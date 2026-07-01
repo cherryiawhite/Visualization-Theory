@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theorizing from the Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2542; --indigo:#2b3a67; --verdigris:#2f7d6f; --ochre:#c88a3a;
+  --paper:#f4efe4; --paper2:#efe8d8; --line:#c9bfa8; --muted:#6a6350;
+  --deep:#121a30;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Spectral',Georgia,serif;line-height:1.62;font-size:18px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.label{font-family:'Space Grotesk',sans-serif;text-transform:uppercase;letter-spacing:.22em;font-size:12px;font-weight:500}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;line-height:1.05;letter-spacing:-.01em}
+
+/* HERO with flowing river */
+.hero{position:relative;min-height:96vh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(120% 90% at 20% 0%,#20305c 0%,#161f3a 55%,#0e1428 100%);color:#f4efe4}
+.hero svg.river{position:absolute;inset:0;width:100%;height:100%}
+.hero .content{position:relative;z-index:3;padding:8vh 0}
+.kicker{color:var(--ochre);margin-bottom:26px}
+.hero h1{font-size:clamp(48px,9vw,128px);color:#f7f2e6;font-weight:600;line-height:.92}
+.hero h1 em{font-style:italic;color:#8fd3c4;font-weight:400}
+.hero .sub{margin-top:30px;max-width:620px;font-size:clamp(19px,2.2vw,25px);color:#d9d2c0;font-weight:300}
+.hero .meta{margin-top:44px;display:flex;gap:26px;flex-wrap:wrap;color:#9aa7c8}
+.hero .meta span{font-family:'Space Grotesk',sans-serif;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase}
+@keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-60px)}}
+.flowline{animation:drift 14s linear infinite alternate}
+.flowline2{animation:drift 20s linear infinite alternate-reverse}
+
+/* section shell */
+section{padding:92px 0;position:relative}
+.tag{display:inline-block;color:var(--verdigris);border:1px solid var(--verdigris);border-radius:40px;padding:5px 15px;margin-bottom:22px}
+.tag.o{color:var(--ochre);border-color:var(--ochre)}
+.tag.i{color:var(--indigo);border-color:var(--indigo)}
+h2.big{font-size:clamp(34px,5.4vw,62px);color:var(--indigo);max-width:16ch;margin-bottom:26px}
+.lead{font-size:clamp(20px,2.4vw,27px);font-weight:300;max-width:44ch;color:#38405e}
+p.body{max-width:66ch;margin-top:20px;color:#2b3350;font-size:18.5px}
+p.body + p.body{margin-top:16px}
+.drop::first-letter{font-family:'Fraunces';font-size:4.1em;float:left;line-height:.78;padding:8px 12px 0 0;color:var(--ochre);font-weight:600}
+
+/* proposition split */
+.prop{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dual{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:40px;border:1px solid var(--line);background:#faf6ec}
+.dual .c{padding:38px 34px}
+.dual .c:first-child{border-right:1px solid var(--line)}
+.dual .c .num{font-family:'Space Grotesk';color:var(--verdigris);letter-spacing:.2em;font-size:12px;text-transform:uppercase;margin-bottom:14px}
+.dual .c h3{font-size:27px;color:var(--indigo);margin-bottom:12px}
+.dual .c p{color:#3a4160;font-size:17px}
+
+/* genealogy constellation */
+.gen{background:var(--deep);color:#e9e3d3}
+.gen h2.big{color:#8fd3c4}
+.constellation{margin-top:46px;display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:2px;background:#243055}
+.star{background:#141d38;padding:26px 22px;transition:.35s;position:relative}
+.star:hover{background:#1c2748;transform:translateY(-3px)}
+.star .who{font-family:'Fraunces';font-size:21px;color:#f4efe4;margin-bottom:7px}
+.star .what{font-size:14.5px;color:#a9b3d0;font-family:'Spectral'}
+.star .dot{position:absolute;top:16px;right:18px;width:7px;height:7px;border-radius:50%;background:var(--ochre);box-shadow:0 0 12px 2px rgba(200,138,58,.6)}
+
+/* tenets */
+.tenets{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);margin-top:44px;border:1px solid var(--line)}
+.tenet{background:var(--paper);padding:30px 28px}
+.tenet:nth-child(odd){background:#faf6ec}
+.tenet .n{font-family:'Fraunces';font-size:44px;color:var(--ochre);font-weight:300;line-height:1}
+.tenet h3{font-size:22px;color:var(--indigo);margin:8px 0 9px}
+.tenet p{font-size:16px;color:#3d4462}
+
+/* THE RIVER divider */
+.riversec{background:linear-gradient(180deg,#f4efe4 0%,#e7f0ec 40%,#dfeee9 100%);position:relative;overflow:hidden}
+.riverflow{position:absolute;left:0;right:0;top:0;height:100%;width:100%;z-index:0;opacity:.55}
+.riversec .wrap{position:relative;z-index:2}
+.riversec h2.big{color:var(--verdigris)}
+.rivergrid{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:40px}
+.rivergrid .card{background:rgba(255,255,255,.72);backdrop-filter:blur(2px);border:1px solid #bcd3cb;padding:30px 28px;border-radius:4px}
+.rivergrid .card .dir{font-family:'Space Grotesk';text-transform:uppercase;letter-spacing:.18em;font-size:12px;color:var(--ochre);margin-bottom:12px}
+.rivergrid .card h3{font-size:24px;color:var(--indigo);margin-bottom:10px}
+.rivergrid .card p{font-size:16.5px;color:#334}
+.pull{margin:44px auto 0;max-width:52ch;text-align:center;font-family:'Fraunces';font-style:italic;font-size:clamp(22px,3vw,31px);color:var(--indigo);font-weight:400;line-height:1.3}
+
+/* manifestations grid */
+.mani{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:42px}
+.mcard{border:1px solid var(--line);background:#faf6ec;padding:24px 22px;border-radius:4px;transition:.3s}
+.mcard:hover{border-color:var(--verdigris);box-shadow:0 8px 30px rgba(47,125,111,.12);transform:translateY(-2px)}
+.mcard .mi{font-family:'Space Grotesk';font-size:12px;letter-spacing:.14em;color:var(--verdigris);text-transform:uppercase;margin-bottom:10px}
+.mcard h3{font-size:19px;color:var(--indigo);margin-bottom:7px;line-height:1.15}
+.mcard p{font-size:15px;color:#4a5170}
+
+/* constellation reading */
+.reading{background:var(--paper2);border-top:1px solid var(--line)}
+.reads{margin-top:38px;columns:2;column-gap:44px}
+.read{break-inside:avoid;padding:13px 0;border-bottom:1px dotted var(--line)}
+.read .t{font-family:'Fraunces';font-size:18px;color:var(--indigo)}
+.read .a{font-size:14.5px;color:var(--muted);font-family:'Space Grotesk'}
+
+/* peer review */
+.peer{background:var(--ink);color:#e9e3d3}
+.peer h2.big{color:var(--ochre)}
+.critique{margin-top:20px;border-left:3px solid var(--verdigris);padding:20px 26px;background:#1d2748;margin-bottom:16px}
+.critique .cq{font-family:'Fraunces';font-size:20px;color:#f0cb8a;margin-bottom:9px}
+.critique .cq::before{content:"Objection. ";color:#8fd3c4;font-style:italic}
+.critique .ca{font-size:16.5px;color:#c8cfe4}
+.critique .ca::before{content:"Answer. ";font-family:'Space Grotesk';font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre);display:block;margin-bottom:5px}
+
+/* venues */
+.venues{display:flex;flex-wrap:wrap;gap:11px;margin-top:34px}
+.chip{font-family:'Space Grotesk';font-size:14px;padding:9px 17px;border:1px solid var(--indigo);color:var(--indigo);border-radius:40px;background:#faf6ec}
+.chip.v{border-color:var(--verdigris);color:var(--verdigris)}
+
+footer{background:var(--deep);color:#8b95b5;padding:60px 0;text-align:center;font-family:'Space Grotesk';font-size:13px;letter-spacing:.1em}
+footer .big{font-family:'Fraunces';font-size:26px;color:#8fd3c4;margin-bottom:14px;letter-spacing:0}
+@media(max-width:780px){.dual,.tenets,.rivergrid{grid-template-columns:1fr}.reads{columns:1}.dual .c:first-child{border-right:none;border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <svg class="river" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="w1" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#3a8f80" stop-opacity=".55"/>
+        <stop offset="1" stop-color="#2b3a67" stop-opacity=".15"/>
+      </linearGradient>
+      <linearGradient id="w2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#c88a3a" stop-opacity=".22"/>
+        <stop offset="1" stop-color="#8fd3c4" stop-opacity=".08"/>
+      </linearGradient>
+    </defs>
+    <path class="flowline" d="M-100,180 C300,120 380,360 720,300 C1080,240 1180,440 1560,360 L1560,900 L-100,900 Z" fill="url(#w1)"/>
+    <path class="flowline2" d="M-100,420 C320,340 460,600 760,520 C1120,430 1240,640 1560,560 L1560,900 L-100,900 Z" fill="url(#w2)"/>
+    <path class="flowline" d="M-100,660 C340,600 520,780 820,720 C1160,650 1300,820 1560,760" fill="none" stroke="#8fd3c4" stroke-opacity=".25" stroke-width="2"/>
+  </svg>
+  <div class="wrap content">
+    <div class="kicker label">A Method &nbsp;/&nbsp; And Its River to the Provision Ground</div>
+    <h1>Theorizing<br>from the <em>Visual</em></h1>
+    <p class="sub">A universal method in which the measured image does not illustrate the argument. It makes it.</p>
+    <div class="meta">
+      <span>Visualizing Theory</span><span>Provision Grounds</span><span>Tidalectic Method</span><span>A Collection</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROPOSITION -->
+<section class="prop">
+  <div class="wrap">
+    <span class="tag i">01 &nbsp; The Proposition</span>
+    <h2 class="big">Theory has treated the image as its servant. Reverse the order.</h2>
+    <p class="body drop">Theory has long made the argument in prose, then summoned a picture afterward to confirm what the words already claimed. Theorizing from the visual reverses the order of operations. The image is not evidence for a thesis formed elsewhere. It is the place where the thesis is formed.</p>
+    <p class="body">The practice runs in two directions, and both belong to one method. It can be carried to any object where power has left a spatial trace.</p>
+    <div class="dual">
+      <div class="c">
+        <div class="num">Direction one</div>
+        <h3>Visualizing theory</h3>
+        <p>To render an abstraction into measured, spatial, sensible form so that it can be seen, tested, and revised. The concept becomes a shape you can walk around.</p>
+      </div>
+      <div class="c">
+        <div class="num">Direction two</div>
+        <h3>Theorizing from the visual</h3>
+        <p>To let the measured image produce the concept, so that the visual is primary evidence and not decoration. The map is not the proof of the idea. The map is where the idea is born.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GENEALOGY -->
+<section class="gen">
+  <div class="wrap">
+    <span class="tag o">02 &nbsp; Genealogy</span>
+    <h2 class="big">The lineage that authorizes the method.</h2>
+    <p class="body" style="color:#c3ccdf;max-width:60ch">This is not invented from nothing. It descends from a tradition that already thought through the image, and through the sensory registers that exceed sight.</p>
+    <div class="constellation">
+      <div class="star"><span class="dot"></span><div class="who">W. E. B. Du Bois</div><div class="what">The 1900 data portraits. Black sociological argument built as hand drawn image.</div></div>
+      <div class="star"><span class="dot"></span><div class="who">Aby Warburg</div><div class="what">The Mnemosyne Atlas. Thinking that happens in the interval between images.</div></div>
+      <div class="star"><span class="dot"></span><div class="who">Sylvia Wynter</div><div class="what">The plot against the plantation. A counter order growing inside the ground.</div></div>
+      <div class="star"><span class="dot"></span><div class="who">Édouard Glissant</div><div class="what">The right to opacity. The refusal that the visible be fully captured.</div></div>
+      <div class="star"><span class="dot"></span><div class="who">Kamau Brathwaite</div><div class="what">Tidalectics. History that moves like the tide, out and back, not forward.</div></div>
+      <div class="star"><span class="dot"></span><div class="who">Katherine McKittrick</div><div class="what">Black geographies. The insistence that method itself can be Black.</div></div>
+      <div class="star"><span class="dot"></span><div class="who">Tina Campt</div><div class="what">Listening to images. Reading the quiet at a lower frequency.</div></div>
+      <div class="star"><span class="dot"></span><div class="who">Christina Sharpe</div><div class="what">The wake. Residence time, where the oceanic becomes the measurable.</div></div>
+      <div class="star"><span class="dot"></span><div class="who">Denise Ferreira da Silva</div><div class="what">Difference without separability. The elemental, the fractal, the plenum.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TENETS -->
+<section>
+  <div class="wrap">
+    <span class="tag i">03 &nbsp; The Seven Tenets</span>
+    <h2 class="big">What the method holds to.</h2>
+    <div class="tenets">
+      <div class="tenet"><div class="n">1</div><h3>The image argues</h3><p>The visual carries the claim, not the caption. It is the primary text.</p></div>
+      <div class="tenet"><div class="n">2</div><h3>Measure is a method, not a cage</h3><p>One hundred feet is not positivist reduction. It renders the geometry of power legible. Measure becomes counter accounting.</p></div>
+      <div class="tenet"><div class="n">3</div><h3>Opacity is kept</h3><p>Legibility without total exposure. Refuse the surveyor's dream that everything be transparent.</p></div>
+      <div class="tenet"><div class="n">4</div><h3>Relation before isolation</h3><p>Map adjacency and the interval. Difference held together, without separation.</p></div>
+      <div class="tenet"><div class="n">5</div><h3>Time is tidalectic</h3><p>Cyclical and oscillating. Planting cycles and market days, not the straight line of progress.</p></div>
+      <div class="tenet"><div class="n">6</div><h3>The plot is a counter map</h3><p>Inside the plantation the small ground holds another order. Draw it and the order appears.</p></div>
+      <div class="tenet"><div class="n">7</div><h3>Sight is synesthetic</h3><p>The visual includes the heard, the felt, the buried. Residence time is a way of seeing.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE RIVER -->
+<section class="riversec">
+  <svg class="riverflow" viewBox="0 0 1440 700" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="flowline2" d="M-50,120 C360,60 520,300 820,240 C1120,180 1260,360 1520,300" fill="none" stroke="#2f7d6f" stroke-opacity=".35" stroke-width="3"/>
+    <path class="flowline" d="M-50,300 C360,240 560,480 860,420 C1160,360 1300,540 1520,480" fill="none" stroke="#c88a3a" stroke-opacity=".3" stroke-width="2"/>
+    <path class="flowline2" d="M-50,470 C380,410 600,640 900,580 C1200,520 1320,700 1520,640" fill="none" stroke="#2b3a67" stroke-opacity=".25" stroke-width="2"/>
+  </svg>
+  <div class="wrap">
+    <span class="tag">04 &nbsp; The River</span>
+    <h2 class="big">The current that runs between the theory and the ground.</h2>
+    <p class="body">Rivers are not a metaphor laid on top. They are the literal ground of these plantations. The Mississippi River estates. The Commewijne and Cottica strips of Suriname. The Plantain Garden River at Golden Grove. The river is where the universal method lands in a single case, and it runs both ways.</p>
+    <div class="rivergrid">
+      <div class="card">
+        <div class="dir">Downstream &nbsp;&#8595;</div>
+        <h3>Theory into the plot</h3>
+        <p>The seven tenets become measurable in the provision ground. The distance from the works to the ground is the geometry of surveillance and its evasion. The soil beneath the cane and the soil beneath the yam is the inversion made visible. The abstraction acquires a scale bar.</p>
+      </div>
+      <div class="card">
+        <div class="dir">Upstream &nbsp;&#8593;</div>
+        <h3>The plot into theory</h3>
+        <p>The ground revises the method. It demands opacity, because the grounds were kept off the plan, in the back lands, at a frequency the overseer could not read. It demands tidalectic time, because the plot runs on planting cycles and market days, not the plantation clock.</p>
+      </div>
+    </div>
+    <p class="pull">To measure the plot is to count what the ledger of slavery tried to own, and to turn that counting against the ledger.</p>
+  </div>
+</section>
+
+<!-- MANIFESTATIONS -->
+<section>
+  <div class="wrap">
+    <span class="tag o">05 &nbsp; Ways It Manifests</span>
+    <h2 class="big">The method takes bodies. A collection of them.</h2>
+    <div class="mani">
+      <div class="mcard"><div class="mi">Cartographic</div><h3>Georeferenced plans as argument objects</h3><p>The warped estate plan, its distances now true, standing as the claim itself.</p></div>
+      <div class="mcard"><div class="mi">Diagram</div><h3>The distance to autonomy scatter</h3><p>Six sites plotted. The Caribbean clusters far and free, the South clusters near and watched. The theory becomes a shape.</p></div>
+      <div class="mcard"><div class="mi">Overlay</div><h3>The soil inversion map</h3><p>Staple land and provision land, colored by soil quality. One image of the plantation's whole logic.</p></div>
+      <div class="mcard"><div class="mi">Atlas</div><h3>A Plot Atlas</h3><p>A Warburgian panel of provision grounds across territories, thought through the intervals between them.</p></div>
+      <div class="mcard"><div class="mi">Temporal</div><h3>A tidalectic timeline</h3><p>History drawn as tide, cyclical and returning, not as a line that only advances.</p></div>
+      <div class="mcard"><div class="mi">Web</div><h3>A scrollable essay object</h3><p>The reader moves down the river of the argument. Built for the ocean storytelling platform.</p></div>
+      <div class="mcard"><div class="mi">Cinema</div><h3>An elemental film essay</h3><p>In the lineage of elemental cinema. The ground filmed as force, not backdrop.</p></div>
+      <div class="mcard"><div class="mi">Sound</div><h3>A piece at the lower frequency</h3><p>Market day, soil, water. Listening to the images the plan could not hold.</p></div>
+      <div class="mcard"><div class="mi">Spatial</div><h3>A roaming exhibition</h3><p>The atlas carried as a research vessel, staged where the tide can be heard.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- READING -->
+<section class="reading">
+  <div class="wrap">
+    <span class="tag i">06 &nbsp; The Reading Constellation</span>
+    <h2 class="big">The works the method reads with.</h2>
+    <div class="reads">
+      <div class="read"><div class="t">Novel and History, Plot and Plantation</div><div class="a">Sylvia Wynter</div></div>
+      <div class="read"><div class="t">Yam, Roots, and Rot: Allegories of the Provision Grounds</div><div class="a">Elizabeth DeLoughrey</div></div>
+      <div class="read"><div class="t">Demonic Grounds &nbsp;·&nbsp; Dear Science</div><div class="a">Katherine McKittrick</div></div>
+      <div class="read"><div class="t">Poetics of Relation</div><div class="a">Édouard Glissant</div></div>
+      <div class="read"><div class="t">The Arrivants &nbsp;·&nbsp; tidalectics</div><div class="a">Kamau Brathwaite</div></div>
+      <div class="read"><div class="t">On Difference Without Separability</div><div class="a">Denise Ferreira da Silva</div></div>
+      <div class="read"><div class="t">In the Wake</div><div class="a">Christina Sharpe</div></div>
+      <div class="read"><div class="t">Listening to Images</div><div class="a">Tina Campt</div></div>
+      <div class="read"><div class="t">Zong!</div><div class="a">M. NourbeSe Philip</div></div>
+      <div class="read"><div class="t">A Map to the Door of No Return</div><div class="a">Dionne Brand</div></div>
+      <div class="read"><div class="t">Data Portraits: Visualizing Black America, 1900</div><div class="a">W. E. B. Du Bois</div></div>
+      <div class="read"><div class="t">Dark Matters</div><div class="a">Simone Browne</div></div>
+      <div class="read"><div class="t">The Sea is History</div><div class="a">Derek Walcott</div></div>
+      <div class="read"><div class="t">Venus in Two Acts</div><div class="a">Saidiya Hartman</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PEER REVIEW -->
+<section class="peer">
+  <div class="wrap">
+    <span class="tag o">07 &nbsp; Peer Review</span>
+    <h2 class="big">The objections the method must survive.</h2>
+    <p class="body" style="color:#c3ccdf;max-width:60ch">A theory is only as strong as the strongest case against it. Three stand ready. Each is answered inside the method, not around it.</p>
+    <div class="critique">
+      <div class="cq">To quantify Black life is to repeat the arithmetic of the slave ledger.</div>
+      <div class="ca">Measure here is counter accounting. It audits the plantation's own geometry and returns the number to the enslaved as evidence of an alternative order. The count indicts the ledger rather than extending it.</div>
+    </div>
+    <div class="critique">
+      <div class="cq">To make legible is to make surveillable.</div>
+      <div class="ca">The method keeps opacity as a first tenet. It maps the plot's escape from the sightline. It does not complete the sightline. It draws the distance the overseer could not close.</div>
+    </div>
+    <div class="critique">
+      <div class="cq">Beautiful maps turn violence into design.</div>
+      <div class="ca">Form is held accountable to the ground. The visual is disciplined by measure and by the refusal to resolve what should remain unresolved. Beauty is permitted only where it deepens the reckoning.</div>
+    </div>
+  </div>
+</section>
+
+<!-- VENUES -->
+<section>
+  <div class="wrap">
+    <span class="tag i">08 &nbsp; Where It Lives</span>
+    <h2 class="big">The rooms this work can enter.</h2>
+    <div class="venues">
+      <span class="chip">Small Axe</span>
+      <span class="chip v">sx archipelagos</span>
+      <span class="chip">Cultural Dynamics</span>
+      <span class="chip v">cultural geographies</span>
+      <span class="chip">GeoHumanities</span>
+      <span class="chip v">Antipode</span>
+      <span class="chip">e-flux journal</span>
+      <span class="chip v">Journal of Historical Geography</span>
+      <span class="chip">TBA21 &nbsp;·&nbsp; The Current</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">The plot is a counter map. Draw it and the order appears.</div>
+    Theorizing from the Visual &nbsp;·&nbsp; A Collection &nbsp;·&nbsp; Companion to the Provision Grounds Reference
+  </div>
+</footer>
+
+</body>
+</html>
